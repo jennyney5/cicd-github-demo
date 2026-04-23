@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Invoice Analytics Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "71440cd7-5731-83c2-4725-d1e599f86855"
+  }
+}

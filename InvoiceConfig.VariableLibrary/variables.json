@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/variables/1.0.0/schema.json",
+  "variables": [
+    {
+      "name": "lakehouse_name",
+      "note": "",
+      "type": "String",
+      "value": "InvoiceLakehouse"
+    },
+    {
+      "name": "workspace_id",
+      "note": "",
+      "type": "String",
+      "value": "0a9140c3-5770-48b4-b25c-7eebcfc6ed58"
+    },
+    {
+      "name": "lakehouse_id",
+      "note": "",
+      "type": "String",
+      "value": "8cbf3c65-3fbb-434c-88ec-6158fa8677ac"
+    },
+    {
+      "name": "enable_logging",
+      "note": "Set to true or false",
+      "type": "String",
+      "value": "true"
+    },
+    {
+      "name": "lakehouse_item_ref",
+      "note": "",
+      "type": "ItemReference",
+      "value": {
+        "itemId": "8cbf3c65-3fbb-434c-88ec-6158fa8677ac",
+        "workspaceId": "0a9140c3-5770-48b4-b25c-7eebcfc6ed58"
+      }
+    }
+  ]
+}

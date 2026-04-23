@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "VariableLibrary",
+    "displayName": "InvoiceConfig"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "10755b20-2ec3-80f0-47fe-df46ce0f777a"
+  }
+}

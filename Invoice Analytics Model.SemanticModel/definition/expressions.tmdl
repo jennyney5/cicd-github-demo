@@ -1,0 +1,6 @@
+expression DatabaseQuery =
+		let
+		    database = Sql.Database("3f5uzv5ty3yepas3ybbnzo5g2q-ynajcctqk62erms4p3v47rxnla.datawarehouse.fabric.microsoft.com", "ab28fd53-3716-4eec-8be3-1b1297ef65d2")
+		in
+		    database
+

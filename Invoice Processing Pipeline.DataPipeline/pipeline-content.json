@@ -1,0 +1,107 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a4128d91-c20d-b6d4-47af-540719d92b3b",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30
+        },
+        "name": "01 Generate Invoices",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "32aadeae-0624-8f9c-4f9d-34d1bb673270",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30
+        },
+        "name": "02 AI Extract Invoices",
+        "dependsOn": [
+          {
+            "activity": "01 Generate Invoices",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "b98a1f10-59f6-9f91-4bd0-681aa3a8d5d4",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30
+        },
+        "name": "03 Silver Gold Layers",
+        "dependsOn": [
+          {
+            "activity": "02 AI Extract Invoices",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "lakehouse_id",
+          "value": {
+            "value": "@pipeline().libraryVariables.InvoiceConfig_lakehouse_id",
+            "type": "Expression"
+          }
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set variable1",
+        "dependsOn": [
+          {
+            "activity": "03 Silver Gold Layers",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "libraryVariables": {
+      "InvoiceConfig_lakehouse_item_ref": {
+        "type": "Object",
+        "variableName": "lakehouse_item_ref",
+        "libraryName": "InvoiceConfig"
+      },
+      "InvoiceConfig_workspace_id": {
+        "type": "String",
+        "variableName": "workspace_id",
+        "libraryName": "InvoiceConfig"
+      },
+      "InvoiceConfig_lakehouse_id": {
+        "type": "String",
+        "variableName": "lakehouse_id",
+        "libraryName": "InvoiceConfig"
+      }
+    },
+    "variables": {
+      "lakehouse_id": {
+        "type": "String"
+      }
+    }
+  }
+}

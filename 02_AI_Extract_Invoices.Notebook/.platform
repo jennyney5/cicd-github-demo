@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "02_AI_Extract_Invoices"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "32aadeae-0624-8f9c-4f9d-34d1bb673270"
+  }
+}
