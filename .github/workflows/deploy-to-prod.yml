@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install fabric-cicd azure-identity
+          pip install fabric-cicd azure-identity requests
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -39,5 +39,6 @@ jobs:
         env:
           FABRIC_WORKSPACE_ID: ${{ secrets.PROD_WORKSPACE_ID }}
           FABRIC_ENVIRONMENT: PROD
+          ACTIVE_VALUE_SET: prod
           REMOVE_ORPHAN_ITEMS: "false"
         run: python scripts/deploy.py
