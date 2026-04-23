@@ -1,0 +1,43 @@
+name: Deploy to Prod Fabric Workspace
+
+on:
+  pull_request:
+    branches: [prod]
+    types: [closed]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install fabric-cicd azure-identity
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy to Prod workspace
+        env:
+          FABRIC_WORKSPACE_ID: ${{ secrets.PROD_WORKSPACE_ID }}
+          FABRIC_ENVIRONMENT: PROD
+          REMOVE_ORPHAN_ITEMS: "false"
+        run: python scripts/deploy.py

@@ -1,0 +1,24 @@
+find_replace:
+  # Dev workspace ID -> Prod workspace ID
+  # Appears in: notebook META, variable library
+  - find_value: "0a9140c3-5770-48b4-b25c-7eebcfc6ed58"
+    replace_value:
+      PROD: "$workspace.$id"
+
+  # Dev lakehouse ID -> Prod lakehouse ID
+  # Appears in: notebook META, variable library
+  - find_value: "8cbf3c65-3fbb-434c-88ec-6158fa8677ac"
+    replace_value:
+      PROD: "$items.Lakehouse.InvoiceLakehouse.$id"
+
+  # Dev SQL endpoint hostname -> Prod SQL endpoint hostname
+  # Appears in: semantic model expressions.tmdl
+  - find_value: "3f5uzv5ty3yepas3ybbnzo5g2q-ynajcctqk62erms4p3v47rxnla.datawarehouse.fabric.microsoft.com"
+    replace_value:
+      PROD: "$items.Lakehouse.InvoiceLakehouse.$sqlendpoint"
+
+  # Dev SQL endpoint ID -> Prod SQL endpoint ID
+  # Appears in: semantic model expressions.tmdl
+  - find_value: "ab28fd53-3716-4eec-8be3-1b1297ef65d2"
+    replace_value:
+      PROD: "$items.Lakehouse.InvoiceLakehouse.$sqlendpointid"
